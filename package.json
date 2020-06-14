@@ -1,0 +1,24 @@
+{
+  "name": "color_picker",
+  "version": "1.0.0",
+  "description": "Web-based color selector tool",
+  "bin": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "windrill",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "pkg": {
+    "scripts": "public/**/*.js",
+    "assets": "public/views/**/*"
+  }
+
+}

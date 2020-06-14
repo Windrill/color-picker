@@ -1,0 +1,215 @@
+body.disabled:before {
+   content: "";
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   left: 0;
+   top: 0;
+   z-index: 99; /* choose a z-index so that no other element can overlap it */
+   background: rgba(0,0,0, .8);  
+}
+
+
+body{
+  background-color:#1f2128;
+  color:#ececec;
+  margin-left:10px;
+}
+canvas{
+  margin-left:-10px;
+  margin-bottom:10px;
+  /*border:1px solid black;*/
+}
+round{
+  border-radius:3px;
+  border: 1px;
+}
+select{ 
+
+  background-color:#b1b1b1;
+}
+input{
+  background-color:#b1b1b1;
+  border-color:#b1b1b1;
+
+  width:60px;
+}
+
+.error-border{
+  border: 1.5px solid #f0515a;
+
+}
+input[type=submit], input[type=reset]{
+  padding: 6px 13px; /*top-down-left-right*/
+  font-size:14px;
+  background-color: rgba(32, 133, 109, 1);
+  background-image: linear-gradient(to top left,
+    rgba(0, 0, 0, .2),
+    rgba(0, 0, 0, .2) 30%,
+    rgba(0, 0, 0, 0));
+
+  /*background-image: linear-gradient(to top left,
+    rgba(0.15, 0.5. 0.427, 0.8),
+    rgba(0.15, 0.5. 0.427, 0.2) 60%,
+    rgba(0,0,0,0)
+    );*/
+  /* the borders seem to be white coloreed */
+  border: 0;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 3px rgba(14, 114, 137, .6),
+            inset -2px -2px 3px rgba(0, 0, 0, .6);
+
+  width: auto;
+}
+input[type=submit]:hover, input[type=reset]:hover {
+  background-color: rgba(81, 162, 117, 1);
+}
+
+input[type=submit]:active, input[type=reset]:active {
+  box-shadow: inset -2px -2px 3px rgba(14, 114, 137, .6),
+    inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.hidey{
+  width:400px;
+}
+
+.hidey:hover{
+  background-color:#d5d182;
+  color:black;
+}
+.views{
+  width:200px;
+  height:25px;
+  margin-bottom:4px;
+}
+.left{
+  float:left;
+  margin-right:20px;
+}
+.right{
+  float:left;
+}
+/*if width < 650... make it wider to occupy the entire lane*/
+@media (max-width:714px){
+  round {
+    position:absolute;
+    width: 390px;
+  }
+}
+.click-switch{
+  display:none;
+
+}
+.click-child{
+  display:none;
+  background-color:#42443e;
+}
+.click-child:hover{
+  background-color:#0f657f;
+
+}
+round {
+  position:relative;
+  display:block;
+  border-radius: 3px;
+  border: 2px solid #4d4d4d;/*#dddddd;*/
+  padding:8px;
+  margin-bottom:10px;
+/*  width: 500px;*/
+min-height:45px;
+}
+round span {
+  position:absolute;
+  top:0;
+  right:0;
+  width:20px;
+  height:20px;
+  border-radius:5px;
+  background-color:#285e5e;/*#eeeeee;*/
+  text-align:right;
+  padding:3px;
+}
+
+round span:hover{
+  background-color:#6f9e8c;/*#dddddd;*/
+}
+.right:child{
+ /*position: absolute;*/
+}
+
+.color {
+  width:150px;
+  height:150px;
+  border: 1px solid #000000;
+  /*font-size:25vw;*/
+  text-align: justify;
+  text-orientation: vertical;
+  color:#dddddd;
+}
+
+#history {
+  width: 390px;
+}
+#hist_font{
+  display:inline-block;
+  font-size:18px;
+  /*padding:4px 0 8px 0;*/
+}
+/*did not find any uses??*/
+hr {
+  display:block;
+}
+htop {
+  display:block;
+}
+rbox {
+  cursor: default;
+  float:right;
+  /*text-align:justify;*/
+  border-radius:3px;
+  padding:3px;
+  margin:4px;
+  background:#285e5e;
+}
+rbox:hover{
+  background:#31937c;/*rgb(81, 162, 117 );*/
+}
+rbox:active{
+  background:#186fb6;/*rgb(81, 162, 117 );*/
+}
+a {
+  text-decoration: none;
+  color:#71d7c5;
+}
+a:hover {
+  color:#b10e44/*#c37c4d*/;
+}
+a:visited {
+  color:#9c6a9c;
+}
+clear{
+}
+options{
+  clear:both;
+float:left;
+  display:inline-block;
+}
+
+.space{
+  margin-left:200px;
+}
+/*just gonna leave this crap here and forget about it until i think about flex boxes  */
+ul{
+  max-width:760px;
+  margin-block-start:0px;
+  margin-block-end:0px;
+  padding-left:0;
+}
+
+li{
+  display:block;
+  text-align:justify;
+  list-style-position:outside;
+  list-style-type:none;
+}

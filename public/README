@@ -1,0 +1,122 @@
+????? clicking on the complementary color box gets you to the complementary color
+
+!!progress: have been trying to save controller.history but history contains html elements not just the numbers! so convert them into numbers,
+and when you load them, convert the numbers to html elements back!!!!!! (at controller.init)
+
+
+
+// iblock: color block information
+// icomblock: complement color block information
+// cblock: block for the different values of colors
+// ihex: hex block information
+
+Structure
+- init.js calls color-picker.js's draw()
+- controller should save the RGB values
+
+color-picker:
+check_trackers(e)  // On click/drag event, evaluate if in boundary & change color
+
+	history elements:
+	create a history color block
+	highlight the active history
+
+	load from cache on init
+	save to cache each move
+	clear
+
+load_save_options
+- Interprets user options from form structure
+- Save the save options through controller's function
+- Don't need to modify anything on the checkbox side, because the user already clicked it to their wishes.
+
+reset_options
+- I must call load_save_options's interpret user options, because there is a non-conventional option (history) that can't be simply read like a checkbox
+- For html, the reset button would refresh the page once, which is fine for me so that the checkboxes can be automatically checked/loaded according
+to their value．　I could avoid the load by separating the option-loading section out from controller's constructor and invoke it on reset, but I have not
+found a reason to do that yet. For now, the default is not prevented for reset.
+- have an alert now
+
+Stuff That Do Changes
+
+*Only on event trigger, checks if positions are valid, THEN changes position.... need to split it up eh
+  check_trackers(e) {
+    // wait is this responsible for setting the positions??? or is it not.///
+    // dont worry, auto update, so this is...just>>>???checking if tracket is in a logical position i guess
+
+* need a ---> color to position one... hmm dont i have? alr
+
+yeup definitely needs some changes...
+this is Unintuitive!! why does 'control', also setthe controller's rgb values, in the same function it propagates its value to the other elements...
+-no need this- 
+          controller.color = dynamic_rgb;
+what worked:
+
+          controller.control(dynamic_rgb);
+
+          controller.plate.colordecode(controller.color);
+
+* i mean, this doesnt work on (changing tracker position) at all!
+          // do i need to manually set draw??????????i thought the pointers should update every second
+          controller.color = dynamic_rgb;
+          controller.draw();
+
+
+
+Not Implemented functions:
+- add exploicit save button right of 'color display mode' (esp you can do this for the first color which is randomly generated)
+-then add support for no-automatic save
+
+then export funciton for history
+
+- add number checking when user enters numerical values into boxes, and change the color accordingly
+
+- upon 'unfocus' for rgb() input elements, change color (and add history....), and if the change is small enough (<1) don't bother adding to history nor adjusting the screen
+
+-untoggle dark mode, haha
+
+- solve the problem that when you repeatedly click on the same spot, the same colors kept getting added, its annoying
+either do that, or when you remove a color in history, the next color in history is automatically selected
+
+- keyboard shortcuts?
+|--------------------------------------------|
+Bugs I've since encountered:
+history_clear onclick, if you couldn't load history colors (therefore leaving controller.history.length empty), you wouldn't be able to clear it either
+  -    history_clear.onclick = function(controller) { checked for if (!controller.history.length) return
+  - Solution: if you cannot load history properly, rmemove it and console log.
+
+
+The 'auto save current color' kinda has an inherent bug in it, why dont you just check if you last touched the color palette, stick that in controller, and use that as a reference
+- For 'Auto-add to history colors', this function is not needed
+- If this is unchecked, this function is needed (enable by default)
+
+
+
+cache javascript/css/html: (enabled through the service worker api)
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
+
+my bad: didn't pass in 'event' as parameter, making me incorrectly believe that reset_default cannot be controlled
+
+
+============================
+figuring the battles between controller's this and history's this
+
+          // border must run inside, and switch history
+          // 1.  unselect that fuking other controller
+
+explaining how you should selectively save yoru current color if you're traversing through 'history'
+                    // actually if you are already within a history: !! means: there is last history & last history is selected 
+          // or: the current color, is the same as the color you've picked!
+          //console.log(dynamic_rgb, "separation", controller.color);
+
+
+
+
+          // adjust the history-color-box style
+
+
+
+
+          
+          // single: then must remove everything from history...not single then when removing-then remove its index if ok
+          // simply release selection

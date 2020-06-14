@@ -1,0 +1,157 @@
+<!-- round > span, clicking on the span copies its child(ren) with class 'copied'
+-->
+<html>
+<head>
+  <title>Main Picker</title>
+  <link rel="stylesheet" type="text/css" href="./all.css"/>
+  <link rel="stylesheet" type="text/css" href="./style.css"/>
+</head>
+
+<body>
+  <h1 style="margin-block-start:0.67em; margin-block-end:0em;">Color Selector</h1>
+  <top>
+  <div class="left">
+    <canvas id="canvas" width="420px;" height="380px;" background="#222222;"></canvas>
+    <br />
+    <label>Color Display Mode</label>
+    <select class="views" id="all_views">
+      <option value="classic">Classic</option>
+      <!--whats your problem<select class="views" id="cmyk_views">-->
+        <option value="cmyk">CMYK</option>
+      </select><br /><br />
+      <round id="history"> 
+        <htop>
+        <label id=hist_font>History</label>
+        <rbox class="flex-right" id="history_clear">Clear</rbox>
+        <rbox><a class="flex-right" id="history_save"href="#" class="button" download="my-file-name.png">Save</a></rbox>
+
+        <rbox class="flex-right" id="history_remove">Remove</rbox>
+        <rbox class="flex-right" id="history_add">Add</rbox>
+      </htop>
+        <br/>
+      </round>
+    </div>
+    <!--
+      <div style="clear:both;"></div>-->
+      <div class="right">
+        <round>
+          <div title="Color" class="color"></div>
+          <br />
+        <!-- complementary...-->
+          <div title="Complimentary color" class="color"></div>
+        </round>
+        <round> 
+
+
+          <!-- surrounded by a rounded box-->
+          <span class="far fa-clone" id="1"></span>
+          <select class="views" id="all_types">
+            <option value="rgb">RGB</option>
+            <option value="cmyk">CMYK</option>
+
+          </select>
+          <br />
+          <!-- many 'type's refer to 1 far fa-clone...-->
+          <type id="c_1" class="1">
+            <label>rgb</label>
+            (<input id ="r" type="text" name="R" value="255">,
+            <input id ="g" type="text" name="G" value="255">,
+            <input id ="b" type="text" name="B" value="255">)
+          </type>
+          <type id="c_3" class = "1" style="display:none;">
+            <label>cmyk</label>
+            (<input id ="c" type="text" name="C" value="0">,
+            <input id ="m" type="text" name="M" value="0">,
+            <input id ="y" type="text" name="Y" value="0">,
+            <input id ="k" type="text" name="K" value="0">)
+          </type>
+        </round>
+        <round>
+          <span class="far fa-clone" id="2"></span>
+          <!--        <info>-->
+            <label>Hex </label><br/><pp class="2" id="c_2"><input id="hex" type="text" name="hex" value="#ffffff"></pp>
+            <!--        </info>-->
+          </round>
+    <!--
+      random initial colors
+      adaptive bar
+      adaptive box
+      disable scrolling on bar to change colors, and adjust sensitivity
+      
+      cover the screen with matt to reduce brightness? too bright and distracting sometimes
+    -->
+
+    <!--
+    options section
+
+    x changing colors (the color scale changes to match the actuall color you'll pick as you select colors)
+    x history vs favorite?????
+
+
+    dark mode somewhere
+
+  -->
+</div>
+<!--end class left???????   onsubmit="cannotloadyet()whydontijustputthisinjs"-->
+</top>
+<options>
+  <!--
+<hr></hr> <-- line separator
+  this is like window, if you put Javascript:somefun() i guess it will then be like an event... we shall see
+
+  <form onsubmit="return wtf()" submit="" action="">
+  -->
+
+    <!--1111  11(11)[1]-->
+  <form onsubmit="Javascript:load_save_options(event)" submit="" action="">
+  <h2 class="hidey" style="margin-block-start:0em;margin-block-end:0em;">Options</h2>
+  <ul class="hidey-target">
+    <!--now the input's clickable area is the label's clickable area-->
+  <li><label><input type="checkbox" value="load_history" checked>Load history colors from cache</input></label></li>
+  <li><label><input type="checkbox" value="add_history" checked>Add color to history on every click</input></label></li>
+  <li><label><input type="checkbox" value="color_confirmation" checked>Confirmation box upon clearing history</input></label></li>
+  <!--confirm on clearing cache-->
+ <li><label><input type="checkbox" value="random_color" >Psuedorandom color on start</input></label></li>
+  <li><label><input type="checkbox" value="scroll_bar" checked>Enable mouse scrolling on selection bars</input></label></li>
+  <li><label><input type="checkbox" value="loose_mouse" checked>Mouse selects colors across selection bars</input></label></li>
+  <!-- 'touched' functionality? yes.-->
+  <section  style="padding-left:22px;">
+    <section_head class="hidey" style="font-size:18px; font-weight: bold;">Dynamic color palette enabled:</section_head>
+    <wrapper class="hidey-target">
+    <li><label><input type="checkbox" value="dynamic_color_rgb" checked>RGB</input></label></li>
+    <li><input type="checkbox" value="dynamic_color_cmyk">CMYK</input></li>
+    </wrapper>
+  </section>
+  
+  <!-- this should be hoverable!!! and switches between................. Small icons; large icons; list of hex-->
+  <!-- several ways
+    i could keep this as a checkbox, move the default one to the '1' option, or make this more like a selection proper????????????how?  
+  -->
+  <li>
+    <label style="font-size:18px; font-weight: bold; padding-left:22px;">
+    <input switch_index="1" type="checkbox" value="save_style" class="click-switch">History export style: 
+    </input>
+    
+      <selection name="save_style" class="click-child"> large icons with hex #</selection>
+      <selection name="save_style" class="click-child"> small color blocks</selection>
+      <selection name="save_style" class="click-child"> .txt file with hex values</selection>
+</label></li>
+  <br />
+<input type="submit" value="Save"></input>
+<!-- !!!! the html form itself does resetting!!!! arrrrugh!! -->
+<input type="reset" onclick="reset_options(event)" value="Reset to default"></input>
+
+</ul>
+
+  </form>
+</options>
+<script src="./conversions.js"></script> 
+<script src="./info.js"></script> 
+<script src="./models/rgb.js"></script> 
+<script src="./models/cmyk.js"></script> 
+<script src="./shapes.js"></script> 
+<script src="./history.js"></script> 
+<script src="./color-picker.js"></script> 
+<script src="./init.js"></script> 
+</body>
+</html>
